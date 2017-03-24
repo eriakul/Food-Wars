@@ -36,7 +36,8 @@ namespace WindowsGame2
         public int eggrika_y = 0;
         public int eggrika_yvelocity;
         public int eggrika_gravity;
-
+        bool eggrika_jump;
+        public int eggrika_jump_counter;
 
 
 
@@ -138,15 +139,25 @@ namespace WindowsGame2
 
             thumbstick_position = player1_controller.ThumbSticks.Left.X;//return value from -1 to 1\
 
-           //default
+           //jump logic
+            if (player1_controller.Buttons.A == ButtonState.Pressed && eggrika_jump == false)
+            {
+                eggrika_jump = true;
+                eggrika_jump_counter = 90;
+            }
+            if (eggrika_jump == true && eggrika_jump_counter == 0)
+            {
+                eggrika_jump = false;
+            }
+            /////////////
 
-            if (thumbstick_position < -.3)
+            if (thumbstick_position < -.3 && eggrika_jump == false)
             {
                 eggrika_mode = 1;
                 eggrika_xvelocity = -1;
             }
 
-            else if (thumbstick_position > .3)
+            else if (thumbstick_position > .3 && eggrika_jump == false)
             {
                 eggrika_mode = 2;
                 eggrika_xvelocity = 1;
@@ -155,6 +166,11 @@ namespace WindowsGame2
             {
                 eggrika_mode = 0;
                 eggrika_xvelocity = 0;
+            }
+            if (eggrika_jump == true)
+            {
+                eggrika_mode = 2;
+                eggrika_jump_counter -= 1;
             }
 
 

@@ -48,14 +48,15 @@ namespace WindowsGame2
             if (counter > 5)
             {   if (eggrika_mode == 1){
 
-                    if (left_walk_step == 7){
+                  if (left_walk_step == 7){
                         left_walk_step = 0; }
 
                    left_walk_step++;
 
                    currentFrame = eggrika_left_walk_list[left_walk_step];
+                }
 
-                  if (eggrika_mode == 2)
+                else if (eggrika_mode == 2)
                    {
                        if (right_walk_step == 7)
                        {
@@ -65,7 +66,13 @@ namespace WindowsGame2
 
                    currentFrame = eggrika_right_walk_list[right_walk_step];
                    }
-                       }
+                else if (eggrika_mode == 0)
+                    {
+                currentFrame = 8;
+                    }
+        
+            counter = 0;
+            }
 
             }
          
@@ -73,7 +80,7 @@ namespace WindowsGame2
 
                
 
-                }
+                
 
 
                 
@@ -103,8 +110,8 @@ namespace WindowsGame2
             spriteBatch.End();
           
         }
-         
+         }
         
 
     }
-}
+
